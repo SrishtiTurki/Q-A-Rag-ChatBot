@@ -9,8 +9,6 @@
 ![Mistral](https://img.shields.io/badge/Mistral_AI-API-FF6B00?style=for-the-badge&logo=mistralai&logoColor=white)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-**[Live Demo](https://your-app.streamlit.app)** • **[API Docs](https://your-backend.onrender.com/docs)** • **[Report Bug](https://github.com/yourusername/rag-chatbot/issues)** • **[Request Feature](https://github.com/yourusername/rag-chatbot/issues)**
-
 </div>
 
 ---
