@@ -1,0 +1,40 @@
+# ─── Backend Dependencies ──────────────────────────────────────────────
+
+# FastAPI Backend
+fastapi
+uvicorn[standard]
+pydantic
+python-multipart
+python-dotenv
+
+# Document Processing
+pymupdf
+python-docx
+pillow
+opencv-python-headless
+
+# OCR (Heavy)
+easyocr
+torch
+torchvision
+
+# ML & Vector (Heavy)
+sentence-transformers
+transformers
+tokenizers
+faiss-cpu
+
+# LLM
+mistralai
+google-generativeai
+
+# Utilities
+numpy
+scipy
+pandas
+requests
+six
+typing-extensions
+packaging
+tqdm
+colorlog
