@@ -1,40 +1,28 @@
-# ─── Backend Dependencies ──────────────────────────────────────────────
-
-# FastAPI Backend
+# ─── Core API ───────────────────────────────────────────────────────────
 fastapi
 uvicorn[standard]
 pydantic
 python-multipart
 python-dotenv
 
-# Document Processing
+# ─── Document Parsing ──────────────────────────────────────────────────
 pymupdf
 python-docx
 pillow
-opencv-python-headless
 
-# OCR (Heavy)
+# ─── OCR (Required for images in PDF/DOCX) ────────────────────────────
+opencv-python-headless
 easyocr
 torch
 torchvision
 
-# ML & Vector (Heavy)
+# ─── Embeddings & Vector Search ───────────────────────────────────────
 sentence-transformers
-transformers
-tokenizers
 faiss-cpu
 
-# LLM
+# ─── LLM ────────────────────────────────────────────────────────────────
 mistralai
-google-generativeai
 
-# Utilities
+# ─── Utilities ──────────────────────────────────────────────────────────
 numpy
-scipy
-pandas
 requests
-six
-typing-extensions
-packaging
-tqdm
-colorlog
