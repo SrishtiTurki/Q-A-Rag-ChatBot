@@ -2,9 +2,28 @@ import streamlit as st
 import requests
 import time
 from datetime import datetime
+import os
 
 # ─── Configuration ─────────────────────────────────────────────────────────────
-BACKEND_URL = "http://localhost:8000"
+
+def get_backend_url():
+    """Get backend URL from Streamlit secrets or environment."""
+    # Try Streamlit Cloud secrets
+    try:
+        if hasattr(st, 'secrets') and 'BACKEND_URL' in st.secrets:
+            return st.secrets['BACKEND_URL']
+    except:
+        pass
+    
+    # Try Render environment variable
+    render_url = os.environ.get("BACKEND_URL")
+    if render_url:
+        return render_url
+    
+    # Local development fallback
+    return "http://localhost:8000"
+
+BACKEND_URL = get_backend_url()
 
 st.set_page_config(
     page_title="RAG Q&A System",
@@ -350,7 +369,10 @@ if has_pending_jobs:
 
 with st.sidebar:
     st.markdown('<div class="sidebar-header">📚 RAG Q&A System</div>', unsafe_allow_html=True)
+    
+    # Show backend status
     st.markdown(f"**Status:** {'🟢 Online' if online else '🔴 Offline'}")
+    st.caption(f"🔗 Backend: {BACKEND_URL}")
     
     if online and st.session_state.stats:
         s = st.session_state.stats
