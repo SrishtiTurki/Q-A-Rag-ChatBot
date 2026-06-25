@@ -73,7 +73,20 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(title="RAG Q&A Chatbot", lifespan=lifespan)
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+from fastapi.middleware.cors import CORSMiddleware
+
+# Add this after creating the app
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://q-a-rag-chatbot.streamlit.app",  # Your Streamlit app
+        "http://localhost:8501",                   # Local development
+        "https://q-a-rag-chatbot-frontend.onrender.com",  # If on Render
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # ─── Models ───────────────────────────────────────────────────────────────────
 
