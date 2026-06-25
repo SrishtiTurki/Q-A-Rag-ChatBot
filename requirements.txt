@@ -1,0 +1,46 @@
+# ─── File Parsing ──────────────────────────────────────────────────────────
+pymupdf==1.24.5              # PDF parsing
+python-docx==1.1.2           # DOCX parsing
+pillow==10.4.0               # Image processing
+opencv-python-headless==4.10.0.84  # Required by EasyOCR
+
+# ─── OCR ──────────────────────────────────────────────────────────────────
+easyocr==1.7.1               # OCR for images
+torch==2.5.0                 # Required by EasyOCR
+torchvision==0.20.0          # Required by EasyOCR
+
+# ─── Embeddings ────────────────────────────────────────────────────────────
+sentence-transformers==3.0.1 # Embedding generation
+transformers==4.46.0         # Required by sentence-transformers
+tokenizers==0.20.0           # Required by transformers
+
+# ─── Vector DB ─────────────────────────────────────────────────────────────
+faiss-cpu==1.8.0             # Vector similarity search
+
+# ─── LLM ──────────────────────────────────────────────────────────────────
+google-generativeai==0.7.2   # Gemini API
+mistralai==1.0.0             # Mistral API (if using Mistral)
+openai==1.55.0               # OpenAI API (optional)
+
+# ─── Backend ──────────────────────────────────────────────────────────────
+fastapi==0.111.0             # API framework
+uvicorn==0.30.1              # ASGI server
+python-multipart==0.0.9      # File upload handling
+python-dotenv==1.0.1         # Environment variables
+pydantic==2.9.0              # Data validation
+pydantic-settings==2.6.0     # Settings management
+
+# ─── UI ──────────────────────────────────────────────────────────────────
+streamlit==1.39.0            # UI framework 
+
+# ─── Utilities ────────────────────────────────────────────────────────────
+numpy==1.26.4                # Numerical operations
+scipy==1.14.1                # Scientific computing
+pandas==2.2.3                # Data manipulation
+requests==2.32.3             # HTTP requests
+six==1.16.0                  # Python 2/3 compatibility
+typing-extensions==4.12.0    # Type hints
+packaging==24.1              # Package version handling
+tqdm==4.66.5                 # Progress bars
+colorlog==6.8.0              # Colored logging
+

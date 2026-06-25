@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+rag_env/
+myenv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ─── PROJECT SPECIFIC - ADD THESE ──────────────────────────────────
+# Large folders
+models/
+rag/
+vector_store/
+feedback_data/
+data/
+uploads/
+temp/
+
+# Large files
+*.faiss
+*.pkl
+*.h5
+*.pt
+*.pth
+*.bin
+*.onnx
+*.model
+*.weights
+
+# Uploaded documents
+*.pdf
+*.docx
+*.csv
+*.png
+*.jpg
+*.jpeg
+*.xlsx
+*.xls
+
+# Test files
+test_*.py
+*_test.py
+tests/
+*.test
+
+# Environment
+.env
+.env.local
+.streamlit/secrets.toml
+
+# Logs
+*.log
+rag_chatbot.log
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
