@@ -1,6 +1,3 @@
-Here's a beautiful, professional README.md for your project:
-
-```markdown
 # 📚 RAG Q&A Chatbot
 
 <div align="center">
@@ -11,8 +8,6 @@ Here's a beautiful, professional README.md for your project:
 ![FAISS](https://img.shields.io/badge/FAISS-1.8.0-0052CC?style=for-the-badge&logo=facebook&logoColor=white)
 ![Mistral](https://img.shields.io/badge/Mistral_AI-API-FF6B00?style=for-the-badge&logo=mistralai&logoColor=white)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-
-**[Live Demo](https://your-app.streamlit.app)** • **[API Docs](https://your-backend.onrender.com/docs)** • **[Report Bug](https://github.com/yourusername/rag-chatbot/issues)** • **[Request Feature](https://github.com/yourusername/rag-chatbot/issues)**
 
 </div>
 
@@ -88,9 +83,9 @@ Here's a beautiful, professional README.md for your project:
 
 ### Prerequisites
 
-```bash
+```
 Python 3.9+
-Mistral AI API Key 
+Mistral AI API Key
 Git
 ```
 
@@ -126,6 +121,8 @@ Create a `.env` file in the root directory:
 ```env
 # Required - Choose your LLM
 MISTRAL_API_KEY=your_mistral_api_key_here
+```
+
 ---
 
 ## 📁 Project Structure
@@ -175,19 +172,19 @@ rag-chatbot/
 
 ### 1. Document Upload & Indexing
 ```
-📄 Upload PDF → 📝 Extract text → ✂️ Chunk into 500 char pieces 
+📄 Upload PDF → 📝 Extract text → ✂️ Chunk into 500 char pieces
 → 🔢 Generate embeddings → 💾 Store in FAISS
 ```
 
 ### 2. Query & Retrieval
 ```
-❓ User question → 🔍 Search FAISS → 📊 Get top 15 chunks 
+❓ User question → 🔍 Search FAISS → 📊 Get top 15 chunks
 → ⭐ Rerank with reward model → 📤 Pass top chunks to LLM
 ```
 
 ### 3. Feedback & Learning
 ```
-✅ User rates answer (1-5⭐) → 🔄 Convert to reward signal 
+✅ User rates answer (1-5⭐) → 🔄 Convert to reward signal
 → 📈 Update chunk scores → 🧠 System improves over time
 ```
 
@@ -214,9 +211,26 @@ rag-chatbot/
 5. Future queries rerank these chunks lower
 6. System improves over time! 📈
 ```
+
 ---
 
 ## 🚀 Deployment
+
+### Backend → Render
+
+1. Push `backend/` to GitHub
+2. Create a new **Web Service** on [Render](https://render.com)
+3. Set build command: `pip install -r requirements.txt`
+4. Set start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+5. Add `MISTRAL_API_KEY` in environment variables
+
+### Frontend → Streamlit Cloud
+
+1. Push `frontend/` to GitHub
+2. Go to [share.streamlit.io](https://share.streamlit.io) and connect your repo
+3. Set `BACKEND_URL` in Streamlit secrets to your Render URL
+
+---
 
 ## 🛠️ Tech Stack
 
@@ -233,7 +247,3 @@ rag-chatbot/
 | **Deployment** | Render, Streamlit Cloud | Hosting |
 
 ---
-
-```
-
-
