@@ -10,9 +10,12 @@ pymupdf
 python-docx
 pillow
 
-# ─── OCR (Required for images in PDF/DOCX) ────────────────────────────
+# ─── OCR ────────────────────────────────────────────────────────────────
 opencv-python-headless
 easyocr
+
+# ─── CPU-ONLY PyTorch ──────────────────────────────────────────────────
+--extra-index-url https://download.pytorch.org/whl/cpu
 torch
 torchvision
 
