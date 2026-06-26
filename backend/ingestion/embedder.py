@@ -13,7 +13,7 @@ def get_model() -> SentenceTransformer:
     global _model
     if _model is None:
         print("[Embedder] Loading model...")
-        _model = SentenceTransformer("all-MiniLM-L6-v2")
+        _model = SentenceTransformer("all-MiniLM-L3-v2")
         _model = _model.to("cpu")
         print("[Embedder] Model ready.")
     return _model
