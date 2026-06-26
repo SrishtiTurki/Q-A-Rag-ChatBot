@@ -12,8 +12,7 @@ def get_model():
     global _model
     if _model is None:
         print("[Embedder] Loading model...")
-        # L3 is small but effective with OCR
-        _model = SentenceTransformer("all-MiniLM-L3-v2")
+        _model = SentenceTransformer("all-MiniLM-L6-v2")
         _model = _model.to("cpu")
         _model.eval()
         print("[Embedder] Model ready.")
