@@ -216,7 +216,7 @@ rag-chatbot/
 
 ## 🚀 Deployment
 
-# Hugging Face Spaces 
+## Hugging Face Spaces 
 1. Push this repo to your Hugging Face Space
 
 2. Add secrets in Space settings:
