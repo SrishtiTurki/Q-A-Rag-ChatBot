@@ -196,30 +196,6 @@ def parse_csv(file_path: str) -> list[dict]:
 
 # ─── Image extractors (Phase 2) ───────────────────────────────────────────────
 
-'''def _extract_pdf_images(file_path: str) -> list[dict]:
-    """Extract and OCR embedded images from PDF. Skips small/decorative images."""
-    doc = fitz.open(file_path)
-    pages = []
-    for page_num, page in enumerate(doc):
-        for img_info in page.get_images(full=True):
-            xref = img_info[0]
-            base_image = doc.extract_image(xref)
-
-            # Skip small images — likely logos or decorations
-            if base_image.get("width", 0) < 150 or base_image.get("height", 0) < 150:
-                continue
-
-            img = Image.open(io.BytesIO(base_image["image"])).convert("RGB")
-            img_text = extract_text_from_image(img)
-            if img_text.strip() and _is_clean_ocr(img_text):
-                pages.append({
-                    "text": f"[Image on Page {page_num + 1}]\n{img_text}",
-                    "page_number": page_num + 1,
-                    "line_count": img_text.count('\n') + 1 if img_text else 0
-                })
-    doc.close()
-    return pages
-
 def _extract_docx_images(file_path: str) -> list[dict]:
     """Extract and OCR embedded images from DOCX."""
     document = docx.Document(file_path)
@@ -251,4 +227,3 @@ def _extract_docx_images(file_path: str) -> list[dict]:
                 
     print(f"[Image Parser] Total: {len(pages)} images extracted with text")
     return pages
-'''

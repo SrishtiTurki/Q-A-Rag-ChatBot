@@ -1,4 +1,4 @@
-'''import easyocr
+import easyocr
 import numpy as np
 from PIL import Image
 import logging
@@ -43,14 +43,3 @@ def extract_text_from_image(image) -> str:
     except Exception as e:
         log.error(f"[OCR] ❌ Failed: {e}")
         return ""
-'''
-
-# backend/ingestion/ocr.py
-import logging
-
-log = logging.getLogger("rag")
-
-def extract_text_from_image(image) -> str:
-    """OCR is disabled to save memory."""
-    log.warning("OCR is disabled (text-only mode).")
-    return ""
