@@ -1,52 +1,47 @@
+# backend/ingestion/embedder.py
 import os
-import torch
 import numpy as np
 from sentence_transformers import SentenceTransformer
-from typing import List
+import torch
 
-# CPU optimization — use all available cores
-torch.set_num_threads(os.cpu_count() or 4)
+# Memory optimization
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+torch.set_num_threads(1)
 
 _model = None
 
-def get_model() -> SentenceTransformer:
+def get_model():
     global _model
     if _model is None:
-        print("[Embedder] Loading model...")
-        _model = SentenceTransformer("paraphrase-MiniLM-L3-v2")
+        print("[Embedder] Loading model (all-MiniLM-L3-v2)...")
+        _model = SentenceTransformer("all-MiniLM-L3-v2")
         _model = _model.to("cpu")
+        _model.eval()
         print("[Embedder] Model ready.")
     return _model
 
-
-def embed_chunks(chunks: List[dict], batch_size: int = 64, show_progress: bool = True) -> List[dict]:
+def embed_chunks(chunks, batch_size=16):
     if not chunks:
-        return []
-
+        return chunks
+    
     model = get_model()
-    texts = [chunk["text"] for chunk in chunks]
-
+    texts = [c["text"] for c in chunks]
+    
     print(f"[Embedder] Embedding {len(texts)} chunks...")
-
-    all_embeddings = model.encode(
+    embeddings = model.encode(
         texts,
         batch_size=batch_size,
         convert_to_numpy=True,
-        show_progress_bar=show_progress,
-        normalize_embeddings=True  # pre-normalize so FAISS search is faster
-    )
-
-    for i, chunk in enumerate(chunks):
-        chunk["embedding"] = all_embeddings[i]
-
-    print(f"[Embedder] Done. Dim: {all_embeddings.shape[1]}")
-    return chunks
-
-
-def embed_query(query: str) -> np.ndarray:
-    model = get_model()
-    return model.encode(
-        query,
-        convert_to_numpy=True,
+        show_progress_bar=False,
         normalize_embeddings=True
     )
+    
+    for i, chunk in enumerate(chunks):
+        chunk["embedding"] = embeddings[i]
+    
+    print(f"[Embedder] Done. Dim: {embeddings.shape[1]}")
+    return chunks
+
+def embed_query(query):
+    model = get_model()
+    return model.encode(query, convert_to_numpy=True, normalize_embeddings=True)

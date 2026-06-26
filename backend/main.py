@@ -46,7 +46,7 @@ log = logging.getLogger("rag")
 image_jobs: dict = {}          # job_id -> status dict
 all_indexed_files: list = []   # tracks filenames in order
 last_query_chunks: list = []   # NEW: Store chunks from last query for feedback
-
+st.session_state.ocr_enabled = False
 # ─── Lifespan ─────────────────────────────────────────────────────────────────
 
 @asynccontextmanager

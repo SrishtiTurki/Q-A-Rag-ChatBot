@@ -196,7 +196,7 @@ def parse_csv(file_path: str) -> list[dict]:
 
 # ─── Image extractors (Phase 2) ───────────────────────────────────────────────
 
-def _extract_pdf_images(file_path: str) -> list[dict]:
+'''def _extract_pdf_images(file_path: str) -> list[dict]:
     """Extract and OCR embedded images from PDF. Skips small/decorative images."""
     doc = fitz.open(file_path)
     pages = []
@@ -219,7 +219,6 @@ def _extract_pdf_images(file_path: str) -> list[dict]:
                 })
     doc.close()
     return pages
-
 
 def _extract_docx_images(file_path: str) -> list[dict]:
     """Extract and OCR embedded images from DOCX."""
@@ -252,3 +251,4 @@ def _extract_docx_images(file_path: str) -> list[dict]:
                 
     print(f"[Image Parser] Total: {len(pages)} images extracted with text")
     return pages
+'''
