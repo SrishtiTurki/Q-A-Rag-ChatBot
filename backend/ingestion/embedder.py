@@ -1,26 +1,27 @@
 # backend/ingestion/embedder.py
-import os
 import numpy as np
 from sentence_transformers import SentenceTransformer
-import torch
+import os
+import gc
 
 # Memory optimization
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-torch.set_num_threads(1)
 
 _model = None
 
 def get_model():
     global _model
     if _model is None:
-        print("[Embedder] Loading model (all-MiniLM-L3-v2)...")
-        _model = SentenceTransformer("all-MiniLM-L3-v2")
+        print("[Embedder] Loading  model...")
+        # Using paraphrase-MiniLM-L3-v2 - no authentication needed
+        _model = SentenceTransformer("paraphrase-MiniLM-L3-v2")
         _model = _model.to("cpu")
         _model.eval()
         print("[Embedder] Model ready.")
     return _model
 
-def embed_chunks(chunks, batch_size=16):
+def embed_chunks(chunks, batch_size=8):
+    """Embed with small batch size to save memory."""
     if not chunks:
         return chunks
     
@@ -28,6 +29,7 @@ def embed_chunks(chunks, batch_size=16):
     texts = [c["text"] for c in chunks]
     
     print(f"[Embedder] Embedding {len(texts)} chunks...")
+    
     embeddings = model.encode(
         texts,
         batch_size=batch_size,
@@ -38,6 +40,9 @@ def embed_chunks(chunks, batch_size=16):
     
     for i, chunk in enumerate(chunks):
         chunk["embedding"] = embeddings[i]
+    
+    # Force garbage collection
+    gc.collect()
     
     print(f"[Embedder] Done. Dim: {embeddings.shape[1]}")
     return chunks

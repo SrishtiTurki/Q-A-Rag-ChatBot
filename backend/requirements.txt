@@ -9,10 +9,10 @@ python-dotenv
 pymupdf
 python-docx
 pillow
-
+psutil
 # ─── OCR ────────────────────────────────────────────────────────────────
-opencv-python-headless
-easyocr
+#opencv-python-headless
+#easyocr
 
 # ─── CPU-ONLY PyTorch ──────────────────────────────────────────────────
 --extra-index-url https://download.pytorch.org/whl/cpu
