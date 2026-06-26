@@ -216,19 +216,18 @@ rag-chatbot/
 
 ## 🚀 Deployment
 
-### Backend → Render
+# Hugging Face Spaces 
+1. Push this repo to your Hugging Face Space
 
-1. Push `backend/` to GitHub
-2. Create a new **Web Service** on [Render](https://render.com)
-3. Set build command: `pip install -r requirements.txt`
-4. Set start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-5. Add `MISTRAL_API_KEY` in environment variables
+2. Add secrets in Space settings:
 
-### Frontend → Streamlit Cloud
+MISTRAL_API_KEY - Your Mistral AI key
 
-1. Push `frontend/` to GitHub
-2. Go to [share.streamlit.io](https://share.streamlit.io) and connect your repo
-3. Set `BACKEND_URL` in Streamlit secrets to your Render URL
+HF_TOKEN - Your Hugging Face token
+
+3. Auto-deploys in 2-3 minutes
+
+Live Demo: https://huggingface.co/spaces/SrishtiTurki/QARagChatBot
 
 ---
 
