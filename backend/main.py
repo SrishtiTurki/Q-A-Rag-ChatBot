@@ -11,7 +11,7 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional
-
+import streamlit as st
 from ingestion.file_parser import parse_file, parse_images_only, SUPPORTED_EXTENSIONS
 from ingestion.chunker import chunk_pages
 from ingestion.embedder import embed_chunks, embed_query
