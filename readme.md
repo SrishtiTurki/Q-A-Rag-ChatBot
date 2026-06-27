@@ -8,7 +8,7 @@
 ![FAISS](https://img.shields.io/badge/FAISS-1.8.0-0052CC?style=for-the-badge&logo=facebook&logoColor=white)
 ![Mistral](https://img.shields.io/badge/Mistral_AI-API-FF6B00?style=for-the-badge&logo=mistralai&logoColor=white)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-
+**Live Demo: https://huggingface.co/spaces/SrishtiTurki/QARagChatBot**
 </div>
 
 ---
@@ -37,11 +37,11 @@
 ```
 ┌──────────────────────────────────────────────────────────────────┐
 │                        USER INTERFACE                            │
-│                    (Streamlit Cloud)                              │
+│                    (Streamlit Cloud)                             │
 │  ┌────────────────────────────────────────────────────────────┐  │
-│  │  Sidebar: Upload, File Selection, Settings, Analytics     │  │
+│  │  Sidebar: Upload, File Selection, Settings, Analytics      │  │
 │  ├────────────────────────────────────────────────────────────┤  │
-│  │  Main: Chat Interface with Star Ratings & Feedback        │  │
+│  │  Main: Chat Interface with Star Ratings & Feedback         │  │
 │  └────────────────────────────────────────────────────────────┘  │
 └───────────────────────────┬──────────────────────────────────────┘
                             │ HTTPS API
@@ -49,32 +49,32 @@
 │                        BACKEND API                               │
 │                      (Render.com)                                │
 │  ┌────────────────────────────────────────────────────────────┐  │
-│  │  Endpoints: /upload, /query, /feedback, /stats            │  │
+│  │  Endpoints: /upload, /query, /feedback, /stats             │  │
 │  └────────────────────────────────────────────────────────────┘  │
 └───────────────────────────┬──────────────────────────────────────┘
                             │
-┌───────────────────────────▼──────────────────────────────────────┐
-│                     PROCESSING PIPELINE                          │
-│                                                                   │
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐         │
-│  │ File Parser │───▶│  Chunker    │───▶│  Embedder   │         │
-│  │ PDF/TXT/    │    │  500 chars  │    │  MiniLM-v2  │         │
-│  │ DOCX/CSV/IMG│    │  50 overlap │    │  384 dims   │         │
-│  └─────────────┘    └─────────────┘    └──────┬──────┘         │
-│                                                │                 │
-│                                                ▼                 │
+┌───────────────────────────▼─────────────────────────────────────┐
+│                     PROCESSING PIPELINE                         │
+│                                                                 │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐          │
+│  │ File Parser │───▶│  Chunker    │───▶│  Embedder  │         │
+│  │ PDF/TXT/    │    │  500 chars  │    │  MiniLM-v2  │          │
+│  │ DOCX/CSV/IMG│    │  50 overlap │    │  384 dims   │          │
+│  └─────────────┘    └─────────────┘    └──────┬──────┘          │
+│                                                │                │
+│                                                ▼                │
 │                                     ┌─────────────────────┐     │
 │                                     │  Vector Store       │     │
 │                                     │  FAISS Index        │     │
 │                                     │  Metadata.pkl       │     │
 │                                     └─────────────────────┘     │
-│                                                                   │
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐         │
-│  │  Retriever  │───▶│  Reranker   │───▶│  LLM        │         │
-│  │  FAISS      │    │  Reward     │    │  Mistral/   │         │
-│  │  Top-K      │    │  Model      │    │  Gemini     │         │
-│  └─────────────┘    └─────────────┘    └─────────────┘         │
-└──────────────────────────────────────────────────────────────────┘
+│                                                                 │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐          │
+│  │  Retriever  │───▶│  Reranker   |───▶│  LLM        │         │
+│  │  FAISS      │    │  Reward     │    │  Mistral     │         │
+│  │  Top-K      │    │  Model      │    │              │         │
+│  └─────────────┘    └─────────────┘    └────────────-─┘         │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -142,7 +142,7 @@ rag-chatbot/
 │   │   ├── vector_store.py    # FAISS operations
 │   │   └── retriever.py       # Search & reranking
 │   ├── generation/             # LLM integration
-│   │   ├── llm.py             # Mistral/Gemini API
+│   │   ├── llm.py             # Mistral
 │   │   └── prompt_builder.py  # Prompt engineering
 │   └── feedback/               # RLHF system
 │       └── reward_model.py    # Star-based learning
@@ -172,20 +172,20 @@ rag-chatbot/
 
 ### 1. Document Upload & Indexing
 ```
-📄 Upload PDF → 📝 Extract text → ✂️ Chunk into 500 char pieces
-→ 🔢 Generate embeddings → 💾 Store in FAISS
+ Upload PDF →  Extract text →  Chunk into 500 char pieces
+→  Generate embeddings →  Store in FAISS
 ```
 
 ### 2. Query & Retrieval
 ```
-❓ User question → 🔍 Search FAISS → 📊 Get top 15 chunks
-→ ⭐ Rerank with reward model → 📤 Pass top chunks to LLM
+ User question →  Search FAISS →  Get top 15 chunks
+→  Rerank with reward model →  Pass top chunks to LLM
 ```
 
 ### 3. Feedback & Learning
 ```
-✅ User rates answer (1-5⭐) → 🔄 Convert to reward signal
-→ 📈 Update chunk scores → 🧠 System improves over time
+User rates answer (1-5⭐) →  Convert to reward signal
+→ Update chunk scores →  System improves over time
 ```
 
 ---
@@ -209,7 +209,7 @@ rag-chatbot/
 3. Chunks get penalized (-0.5 * position_weight)
 4. Source/document gets slightly penalized
 5. Future queries rerank these chunks lower
-6. System improves over time! 📈
+6. System improves over time! 
 ```
 
 ---
