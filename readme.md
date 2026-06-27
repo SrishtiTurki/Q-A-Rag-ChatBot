@@ -8,6 +8,8 @@
 ![FAISS](https://img.shields.io/badge/FAISS-1.8.0-0052CC?style=for-the-badge&logo=facebook&logoColor=white)
 ![Mistral](https://img.shields.io/badge/Mistral_AI-API-FF6B00?style=for-the-badge&logo=mistralai&logoColor=white)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+
 **Live Demo: https://huggingface.co/spaces/SrishtiTurki/QARagChatBot**
 </div>
 
