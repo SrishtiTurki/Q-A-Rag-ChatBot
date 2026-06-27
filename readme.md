@@ -57,7 +57,7 @@
 │                     PROCESSING PIPELINE                         │
 │                                                                 │
 │  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐          │
-│  │ File Parser │───▶│  Chunker    │───▶│  Embedder  │         │
+│  │ File Parser │───▶│  Chunker    │───▶│  Embedder  │          │
 │  │ PDF/TXT/    │    │  500 chars  │    │  MiniLM-v2  │          │
 │  │ DOCX/CSV/IMG│    │  50 overlap │    │  384 dims   │          │
 │  └─────────────┘    └─────────────┘    └──────┬──────┘          │
